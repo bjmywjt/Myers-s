@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5"><title>英语背诵训练营 V2</title>
+<style>
+:root{--p:#4f46e5;--p2:#7c3aed;--bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#7b8497;--line:#e7eaf1;--ok:#16a34a;--bad:#dc2626;--gold:#d97706}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+button{font:inherit;cursor:pointer;border:0}.wrap{max-width:1100px;margin:auto;padding:18px 14px 55px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.brand{display:flex;gap:11px;align-items:center}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;color:white;font-size:22px}.brand h1{font-size:20px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:3px 0}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px #1e293b0b}
+.side{padding:14px;height:max-content;position:sticky;top:10px}.side h3{margin:5px 8px 12px}.article{width:100%;padding:11px;border-radius:12px;background:white;text-align:left;display:flex;gap:10px;align-items:center;margin:5px 0}.article.active{background:#eeefff;color:var(--p);font-weight:700}.badge{width:31px;height:31px;border-radius:10px;background:#f0f2f6;display:grid;place-items:center}.active .badge{background:var(--p);color:#fff}.article small{display:block;color:var(--muted);font-weight:400;margin-top:3px}.tip{margin-top:12px;background:#fff8e7;padding:12px;border-radius:12px;font-size:12px;line-height:1.65;color:#785b16}
+.hero{padding:22px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#fafaff,#fff)}.tag{display:inline-block;padding:5px 9px;border-radius:99px;background:#ecebff;color:#5548c9;font-size:11px;font-weight:700}.hero h2{margin:9px 0 2px;font-size:25px}.sub{color:var(--muted);font-size:14px}.stats{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.stat{background:#f7f8fb;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12px}.progress{height:8px;background:#e9ebf2;border-radius:99px;overflow:hidden;margin-top:12px}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--p2));transition:.3s}
+.tabs{display:flex;gap:7px;padding:13px 18px;border-bottom:1px solid var(--line);overflow:auto}.tab{white-space:nowrap;padding:9px 12px;border-radius:10px;background:#f3f4f7;color:#536075;font-size:13px}.tab.active{background:var(--p);color:#fff}
+.body{padding:18px}.stage{display:none}.stage.show{display:block}.hint{padding:11px 13px;border-radius:12px;background:#f7f8fc;color:#657087;font-size:12px;line-height:1.6;margin-bottom:13px}
+.sentence{padding:14px;border:1px solid var(--line);border-radius:14px;margin:9px 0}.srow{display:flex;align-items:center;gap:8px}.sn{width:25px;height:25px;border-radius:8px;background:#f0f2f6;display:grid;place-items:center;font-size:11px;color:#667085}.splay{margin-left:auto;background:#eef0ff;color:var(--p);width:31px;height:31px;border-radius:9px}.en{font-size:17px;line-height:1.75;margin-top:8px}.zh{font-size:14px;color:#7b8497;line-height:1.65;margin-top:7px;padding-top:7px;border-top:1px dashed #edf0f5}.kw{background:#fff0bd;color:#9a5a00;padding:1px 3px;border-radius:4px;font-weight:700}.blank{background:#202938;color:#202938;border-radius:4px;padding:0 4px;cursor:pointer}.blank.open{background:#e9edff;color:inherit}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{padding:10px 13px;border-radius:11px;background:#eef0ff;color:var(--p);font-size:13px}.btn.primary{background:var(--p);color:white}.btn.dark{background:#182033;color:#fff}
+.test{border:1px solid var(--line);border-radius:15px;padding:17px;background:#fff}.q{font-size:18px;line-height:1.8}.answer{margin-top:12px;padding:11px;border-radius:10px;background:#f6f7fb;line-height:1.7}.feedback{display:none;margin-top:11px;padding:11px;border-radius:10px;font-size:13px}.feedback.ok{display:block;background:#ecfdf3;color:#166534}.feedback.bad{display:block;background:#fef2f2;color:#991b1b}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.chip{padding:7px 9px;border-radius:99px;background:#fff3c7;color:#8a5a08;font-size:12px}.mistake{border-left:4px solid #f59e0b;background:#fffaf0;padding:12px;border-radius:10px;margin:8px 0}.empty{text-align:center;color:var(--muted);padding:35px 10px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.side{position:static}.top .progressTop{display:none}.article{display:inline-flex;width:calc(50% - 4px);vertical-align:top}.tip{display:none}.hero{padding:18px}.body{padding:14px}.en{font-size:16px}}
+
+/* ===== Mobile App UI ===== */
+html,body{width:100%;min-height:100%;overflow-x:hidden;overscroll-behavior-x:none}
+body{-webkit-text-size-adjust:100%;touch-action:pan-y}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.wrap{width:100%;max-width:none;margin:0;padding:0 0 calc(76px + env(safe-area-inset-bottom))}
+.top{position:sticky;top:0;z-index:10;margin:0;padding:10px 14px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand h1{font-size:18px}.logo{width:40px;height:40px;border-radius:12px}
+.layout{display:block}
+.side{display:none}
+main.card{border:0;border-radius:0;box-shadow:none;background:var(--bg)}
+.hero{padding:18px 15px 14px;border-radius:0}
+.hero h2{font-size:22px;line-height:1.3}
+.sub{font-size:13px}
+.stats{gap:6px}.stat{padding:7px 9px}
+.tabs{position:sticky;top:61px;z-index:8;padding:9px 12px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:9px 11px;font-size:12px;flex:none}
+.body{padding:12px 12px 16px}
+.sentence{padding:13px;margin:8px 0;border-radius:13px}
+.en{font-size:16px;line-height:1.8;word-break:normal}
+.zh{font-size:13px;line-height:1.7}
+.splay{width:36px;height:36px}
+.btn{min-height:40px;padding:9px 12px}
+.test{padding:15px;border-radius:14px}
+.q{font-size:17px;line-height:1.85}
+.actions{gap:7px}
+.actions .btn{flex:1;min-width:calc(50% - 7px);text-align:center}
+.progressTop{display:none!important}
+.mobileNav{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:7px 8px calc(7px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-top:1px solid var(--line);display:flex;justify-content:space-around}
+.mobileNav button{background:none;color:#7b8497;font-size:10px;min-width:58px;padding:4px 2px}
+.mobileNav button span{display:block;font-size:20px;line-height:22px;margin-bottom:2px}
+.mobileNav button.active{color:var(--p);font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(78px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:40;background:#182033;color:#fff;padding:9px 13px;border-radius:99px;font-size:12px;opacity:0;pointer-events:none;transition:.2s}
+.toast.show{opacity:1}
+@media(min-width:761px){
+ .mobileNav{display:none}
+}
+
+/* ===== Mobile App UI ===== */
+html,body{width:100%;height:100%;overflow-x:hidden;overscroll-behavior-x:none}
+body{-webkit-text-size-adjust:100%;touch-action:pan-y}
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:100%;max-width:none;min-height:100vh;padding:0 0 calc(74px + env(safe-area-inset-bottom))}
+.top{height:62px;margin:0;padding:8px 15px;background:rgba(255,255,255,.96);border-bottom:1px solid #edf0f5;position:sticky;top:0;z-index:10}
+.brand{gap:9px}.logo{width:38px;height:38px;border-radius:12px;font-size:19px}.brand h1{font-size:17px}.brand p{font-size:10px}
+.top .progressTop{display:none}
+.layout{display:block}
+.side{display:none}
+main.card{border:0;border-radius:0;box-shadow:none;background:#f5f7fb}
+.hero{padding:16px 15px 13px;border-radius:0}
+.hero h2{font-size:21px;line-height:1.3;margin-top:7px}
+.sub{font-size:13px}
+.stats{gap:6px;margin-top:11px}
+.stat{padding:6px 8px;font-size:11px}
+.hero>.progress{height:6px;margin-top:10px}
+.tabs{position:sticky;top:62px;z-index:9;background:rgba(255,255,255,.97);padding:8px 10px;border-bottom:1px solid #e9ecf2;box-shadow:0 2px 8px rgba(30,41,59,.05)}
+.tab{font-size:12px;padding:8px 10px;border-radius:9px}
+.body{padding:12px 11px}
+.hint{font-size:11px;padding:9px 10px;margin-bottom:10px}
+.sentence{padding:12px;margin:8px 0;border-radius:12px}
+.en{font-size:16px;line-height:1.72}
+.zh{font-size:13px;line-height:1.65}
+.splay{width:34px;height:34px}
+.test{padding:14px;border-radius:13px}
+.q{font-size:17px;line-height:1.75}
+.answer{font-size:15px}
+.btn{padding:10px 11px;font-size:12px}
+.actions{gap:7px}
+.actions .btn{flex:1;min-width:calc(50% - 7px)}
+.chip{font-size:11px}
+.mistake{font-size:13px}
+
+/* 原生 App 底部导航 */
+.appNav{position:fixed;left:0;right:0;bottom:0;height:calc(64px + env(safe-area-inset-bottom));padding:6px 8px env(safe-area-inset-bottom);background:rgba(255,255,255,.98);border-top:1px solid #e5e8ef;box-shadow:0 -5px 20px rgba(30,41,59,.08);z-index:30;display:flex;gap:4px}
+.appNav button{flex:1;background:transparent;color:#8a93a5;font-size:10px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.appNav button b{font-size:20px;line-height:20px;font-weight:500}
+.appNav button.active{color:#4f46e5;background:#f0f1ff}
+.appNav .navText{font-size:10px}
+
+/* 避免 iOS 点击/选择体验像网页 */
+*{-webkit-user-select:none;user-select:none}
+.en,.zh,.q,.answer,.mistake{-webkit-user-select:text;user-select:text}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><div class="logo">📖</div><div><h1>英语背诵训练营</h1><p>国庆背诵任务 · V2 闯关版</p></div></div><div class="progressTop" style="min-width:210px"><div style="display:flex;justify-content:space-between;font-size:12px;color:#7b8497"><span>本篇掌握度</span><b id="pct">0%</b></div><div class="progress"><i id="bar"></i></div></div></header>
+<div class="layout">
+<aside class="card side"><h3>📚 4篇任务</h3><div id="list"></div><div class="tip">推荐顺序：理解 → 跟读 → 关键词 → 挖空 → 中文反译 → 完全背诵。错句会自动进入“易错句本”。</div></aside>
+<main class="card">
+<section class="hero"><span class="tag">今日挑战</span><h2 id="title"></h2><div class="sub" id="subtitle"></div><div class="stats"><span class="stat">📄 <b id="count">0</b>句</span><span class="stat">🎯 掌握 <b id="master">0</b>句</span><span class="stat">⚠️ 易错 <b id="mistakes">0</b>句</span></div><div class="progress"><i id="bar2"></i></div></section>
+<nav class="tabs"><button class="tab active" data-stage="learn" onclick="stage('learn')">① 理解</button><button class="tab" data-stage="keyword" onclick="stage('keyword')">② 关键词</button><button class="tab" data-stage="blank" onclick="stage('blank')">③ 挖空</button><button class="tab" data-stage="translate" onclick="stage('translate')">④ 中译英</button><button class="tab" data-stage="final" onclick="stage('final')">⑤ 最终测试</button><button class="tab" data-stage="mistake" onclick="stage('mistake')">⚠️ 易错句</button></nav>
+<section class="body">
+<div id="learn" class="stage show"><div class="hint">先完整读一遍。黄色部分是原任务图片中老师标出的重点表达。</div><div id="learnList"></div></div>
+<div id="keyword" class="stage"><div class="hint">只看黄色关键词，自己把整句说出来，再点击 🔊 听原句。</div><div id="keyList"></div></div>
+<div id="blank" class="stage"><div class="hint">深色词语是“记忆缺口”。先尝试自己补出来，点击单词可以核对。</div><div id="blankList"></div></div>
+<div id="translate" class="stage"><div class="hint">这里最接近真实考试：只给中文，不给英文。先在脑中说完，再点“看答案”。</div><div class="test"><div class="q" id="transQ"></div><div id="transA"></div><div class="actions"><button class="btn primary" onclick="showTransAnswer()">👀 看答案</button><button class="btn" onclick="newTranslate()">换一句</button><button class="btn" onclick="grade(true)">✅ 背对了</button><button class="btn" onclick="grade(false)">❌ 没背出</button></div><div id="feedback" class="feedback"></div></div></div>
+<div id="final" class="stage"><div class="hint">最终测试：随机抽取句子。目标不是“看着会”，而是“不看英文也能完整说出来”。</div><div class="test"><div class="q" id="finalQ"></div><div id="finalA"></div><div class="actions"><button class="btn primary" onclick="showFinal()">👀 看答案</button><button class="btn" onclick="newFinal()">换一句</button><button class="btn" onclick="gradeFinal(true)">✅ 正确</button><button class="btn" onclick="gradeFinal(false)">❌ 错误</button></div><div id="finalFeedback" class="feedback"></div></div></div>
+<div id="mistake" class="stage"><div class="hint">这里集中练习本篇曾经答错的句子。错一次就会记录，答对后会减少优先级。</div><div id="mistakeList"></div></div>
+<div class="actions"><button class="btn" onclick="speakAll()">🔊 整篇朗读</button><button class="btn dark" onclick="nextArticle()">完成本篇 → 下一篇</button></div>
+</section></main></div></div>
+<nav class="appNav" id="appNav">
+  <button class="active" data-nav="learn" onclick="mobileNav('learn')"><b>📖</b><span class="navText">学习</span></button>
+  <button data-nav="translate" onclick="mobileNav('translate')"><b>🎯</b><span class="navText">抽查</span></button>
+  <button data-nav="mistake" onclick="mobileNav('mistake')"><b>⚠️</b><span class="navText">易错句</span></button>
+  <button data-nav="next" onclick="nextArticle()"><b>→</b><span class="navText">下一篇</span></button>
+</nav>
+
+<script>
+document.addEventListener("gesturestart",e=>e.preventDefault(),{passive:false});
+document.addEventListener("gesturechange",e=>e.preventDefault(),{passive:false});
+document.addEventListener("gestureend",e=>e.preventDefault(),{passive:false});
+
+const A=[
+["A Survey Report on Sports","关于同学们运动情况的调查报告",[
+["Last week, I carried out a survey on sports among my classmates. Here is the result.","上周，我在同学中开展了一项关于运动的调查。以下是结果。",["carried out"]],
+["According to the survey, most students like ball games.","调查显示，大多数学生喜欢球类运动。",[]],
+["Basketball is the most popular, and 60% of the students play it.","篮球最受欢迎，60% 的学生会打篮球。",[]],
+["About 30% of the students like running, and some girls prefer swimming.","约 30% 的学生喜欢跑步，还有一些女生更喜欢游泳。",[]],
+["As for the time, only half of them do sports more than three times a week.","在运动时间方面，只有一半的人每周运动三次以上。",["do sports"]],
+["In my opinion, doing sports is good for our health.","在我看来，做运动对我们的健康有好处。",["In my opinion"]],
+["It can help us relax and make us stronger.","它能帮助我们放松，让我们更强壮。",["help us relax","make us stronger"]],
+["I suggest that we should take exercise every day.","我建议我们每天都应该锻炼。",["take exercise"]]]],
+["Sports and Studies","运动与学习",[
+["Nowadays, more and more students are busy with their studies.","如今，越来越多的学生忙于学习。",[]],
+["Some of them give up doing sports, because they think it takes up too much time.","有些人放弃了运动，因为他们觉得运动占用太多时间。",["give up"]],
+["Is that right?","这样对吗？",[]],
+["As a matter of fact, doing sports is not a waste of time.","事实上，做运动并不是浪费时间。",[]],
+["First, sports keep us healthy, so we can study better.","首先，运动让我们保持健康，所以我们能学得更好。",[]],
+["Second, sports help us relax after a long day of classes.","其次，运动帮助我们在一天的课程后放松。",["help us relax"]],
+["Third, sports teach us to work together with others.","第三，运动教会我们与他人合作。",[]],
+["A healthy body leads to a clear mind.","健康的身体带来清醒的头脑。",["leads to"]],
+["In my class, the students who often play sports usually study better.","在我们班，经常运动的学生通常学得更好。",[]],
+["In my opinion, sports and studies are not enemies.","在我看来，运动和学习不是敌人。",["In my opinion"]],
+["We should make a plan and find a balance between them.","我们应该制定计划，在两者之间找到平衡。",[]],
+["As long as we manage our time well, we can do well in both.","只要我们管理好时间，就能两者都做得好。",["As long as"]]]],
+["Safety Rules","校园安全规则",[
+["Safety is very important for everyone, especially for students.","安全对每个人都非常重要，对学生尤其如此。",[]],
+["To keep safe, we should follow some rules.","为了确保安全，我们应该遵守一些规则。",["keep safe","follow"]],
+["At school, we should not run in the hallways or push others.","在学校里，我们不应在走廊上奔跑或推搡他人。",[]],
+["When we go up and down the stairs, we should hold the handrail.","上下楼梯时，我们应该扶好扶手。",["go up and down"]],
+["In the science lab, we must follow the teacher’s instructions and never touch things we do not know.","在科学实验室里，我们必须听从老师的指示，绝不碰我们不了解的东西。",[]],
+["On the way home, we must obey the traffic rules and pay attention to the traffic lights.","在回家的路上，我们必须遵守交通规则，注意红绿灯。",["pay attention to"]],
+["In my opinion, safety comes first.","在我看来，安全第一。",["In my opinion"]],
+["If we keep these rules in mind, we can avoid many accidents.","如果我们牢记这些规则，就能避免许多事故。",["keep these rules in mind"]]]],
+["Safe Surfing Online","安全上网",[
+["The Internet brings us a lot of fun and information.","互联网给我们带来很多乐趣和信息。",[]],
+["However, it also brings some dangers, especially for teenagers.","然而，它也带来一些危险，对青少年尤其如此。",[]],
+["When we surf the Internet, we may meet bad people online.","上网时，我们可能会遇到网上的坏人。",["surf the Internet"]],
+["They may ask for our personal information, such as our names and phone numbers.","他们可能会索要我们的个人信息，比如姓名和电话号码。",[]],
+["Some websites are not safe, and they may lead us to bad places.","有些网站不安全，可能会把我们引向不好的地方。",[]],
+["What is more, spending too much time online does harm to our eyes.","而且，花太多时间上网会损害我们的眼睛。",["does harm to"]],
+["We should remember that real life is even more important than the online world.","我们应该记住，现实生活比网络世界更加重要。",[]],
+["In my opinion, we should stay away from bad websites.","在我看来，我们应该远离不良网站。",["In my opinion","stay away from"]],
+["We should never give out our personal information to strangers.","我们绝不应当把个人信息透露给陌生人。",["give out"]],
+["As long as we use the Internet carefully, it can be a good helper and bring us more good than harm.","只要我们谨慎使用互联网，它就能成为好帮手，给我们带来的好处多于坏处。",["As long as"]]]]
+];
+let idx=0, curT=-1,curF=-1;
+let data=JSON.parse(localStorage.getItem("reciteV2")||"{}");
+function key(){return "a"+idx}
+function init(){if(!data[key()])data[key()]={master:[],wrong:{}}}
+function save(){localStorage.setItem("reciteV2",JSON.stringify(data))}
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function hi(s,k){k.forEach(x=>{let r=new RegExp(x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi");s=s.replace(r,m=>`<span class="kw">${m}</span>`)});return s}
+function blank(s){let w=s.split(/(\s+)/),n=0;return w.map(x=>{if(/\s/.test(x)||x.length<3)return x;n++;return n%3===0?`<span class="blank" onclick="this.classList.toggle('open')">${esc(x)}</span>`:esc(x)}).join("")}
+function renderList(){document.getElementById("list").innerHTML=A.map((a,i)=>`<button class="article ${i==idx?"active":""}" onclick="select(${i})"><span class="badge">${i+1}</span><span>${a[0]}<small>${a[1]}</small></span></button>`).join("")}
+function render(){init();let a=A[idx],d=data[key()],m=d.master.length;document.getElementById("title").textContent=a[0];document.getElementById("subtitle").textContent=a[1];document.getElementById("count").textContent=a[2].length;document.getElementById("master").textContent=m;document.getElementById("mistakes").textContent=Object.keys(d.wrong).filter(x=>d.wrong[x]>0).length;let p=Math.round(m/a[2].length*100);document.getElementById("pct").textContent=p+"%";document.getElementById("bar").style.width=p+"%";document.getElementById("bar2").style.width=p+"%";renderList();
+document.getElementById("learnList").innerHTML=a[2].map((s,i)=>`<div class="sentence"><div class="srow"><span class="sn">${i+1}</span><span style="font-size:12px;color:#8a94a6">重点：${s[2].length?s[2].join(" · "):"—"}</span><button class="splay" onclick="speak(${i})">🔊</button></div><div class="en">${hi(esc(s[0]),s[2])}</div><div class="zh">${esc(s[1])}</div></div>`).join("");
+document.getElementById("keyList").innerHTML=a[2].map((s,i)=>`<div class="sentence"><div class="srow"><span class="sn">${i+1}</span><button class="splay" onclick="speak(${i})">🔊</button></div><div class="chips">${(s[2].length?s[2]:["没有老师标注重点，尝试记住整句"]).map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div><div class="zh">${esc(s[1])}</div></div>`).join("");
+document.getElementById("blankList").innerHTML=a[2].map((s,i)=>`<div class="sentence"><div class="srow"><span class="sn">${i+1}</span><button class="splay" onclick="speak(${i})">🔊</button></div><div class="en">${blank(s[0])}</div><div class="zh">${esc(s[1])}</div></div>`).join("");
+renderMistakes();newTranslate();newFinal();}
+
+function mobileNav(s){
+  if(s==="next"){nextArticle();return}
+  stage(s);
+  document.querySelectorAll(".appNav button").forEach(b=>b.classList.toggle("active",b.dataset.nav===s));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function stage(s){document.querySelectorAll(".stage").forEach(x=>x.classList.remove("show"));document.getElementById(s).classList.add("show");document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.stage===s));document.querySelectorAll(".appNav button").forEach(x=>x.classList.toggle("active",x.dataset.nav===s));if(s==="translate")newTranslate();if(s==="final")newFinal();if(s==="mistake")renderMistakes()}
+function select(i){idx=i;render();stage("learn")}
+function speak(i){let u=new SpeechSynthesisUtterance(A[idx][2][i][0]);u.lang="en-US";u.rate=.82;speechSynthesis.cancel();speechSynthesis.speak(u)}
+function speakAll(){let t=A[idx][2].map(x=>x[0]).join(" ");let u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.78;speechSynthesis.cancel();speechSynthesis.speak(u)}
+function rand(){return Math.floor(Math.random()*A[idx][2].length)}
+function newTranslate(){curT=rand();document.getElementById("transQ").innerHTML="请根据中文说出英文：<br><br><b>"+esc(A[idx][2][curT][1])+"</b>";document.getElementById("transA").innerHTML="";document.getElementById("feedback").className="feedback"}
+function showTransAnswer(){document.getElementById("transA").innerHTML='<div class="answer">'+esc(A[idx][2][curT][0])+'</div>'}
+function grade(ok){let d=data[key()];if(ok){if(!d.master.includes(curT))d.master.push(curT);if(d.wrong[curT])d.wrong[curT]=Math.max(0,d.wrong[curT]-1)}else{d.wrong[curT]=(d.wrong[curT]||0)+1;d.master=d.master.filter(x=>x!==curT)}save();let f=document.getElementById("feedback");f.className="feedback "+(ok?"ok":"bad");f.textContent=ok?"✅ 很好，这一句掌握了！":"💪 记入易错句本。先再读2遍，再来一次。";render();setTimeout(newTranslate,200)}
+function newFinal(){curF=rand();document.getElementById("finalQ").innerHTML="随机抽查：<br><br><b>"+esc(A[idx][2][curF][1])+"</b>";document.getElementById("finalA").innerHTML="";document.getElementById("finalFeedback").className="feedback"}
+function showFinal(){document.getElementById("finalA").innerHTML='<div class="answer">'+esc(A[idx][2][curF][0])+'</div>'}
+function gradeFinal(ok){let d=data[key()];if(ok){if(!d.master.includes(curF))d.master.push(curF);if(d.wrong[curF])d.wrong[curF]=Math.max(0,d.wrong[curF]-1)}else{d.wrong[curF]=(d.wrong[curF]||0)+1;d.master=d.master.filter(x=>x!==curF)}save();let f=document.getElementById("finalFeedback");f.className="feedback "+(ok?"ok":"bad");f.textContent=ok?"🏆 正确！继续下一句。":"⚠️ 这句进入易错句本，稍后重点复习。";render();setTimeout(newFinal,250)}
+function renderMistakes(){let d=data[key()],arr=Object.keys(d.wrong).filter(x=>d.wrong[x]>0).map(Number).sort((a,b)=>(d.wrong[b]||0)-(d.wrong[a]||0));document.getElementById("mistakeList").innerHTML=arr.length?arr.map(i=>`<div class="mistake"><b>第${i+1}句 · 错误 ${d.wrong[i]} 次</b><div style="margin-top:6px">${esc(A[idx][2][i][0])}</div><div style="color:#7b8497;margin-top:5px">${esc(A[idx][2][i][1])}</div><button class="btn" style="margin-top:8px" onclick="speak(${i})">🔊 重听</button></div>`).join(""):'<div class="empty">🎉 暂时没有易错句！<br>先去“中译英”挑战一下。</div>'}
+function nextArticle(){select((idx+1)%A.length)}
+
+function mobileStage(s,btn){
+  stage(s);
+  document.querySelectorAll("#mobileNav button").forEach(x=>x.classList.remove("active"));
+  if(btn)btn.classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function mobileNext(){
+  nextArticle();
+  stage("learn");
+  document.querySelectorAll("#mobileNav button").forEach(x=>x.classList.remove("active"));
+  document.querySelector("#mobileNav button").classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+render();
+
+document.addEventListener("gesturestart",e=>e.preventDefault(),{passive:false});
+document.addEventListener("gesturechange",e=>e.preventDefault(),{passive:false});
+document.addEventListener("gestureend",e=>e.preventDefault(),{passive:false});
+let lastTouch=0;
+document.addEventListener("touchend",e=>{
+  const now=Date.now();
+  if(now-lastTouch<300)e.preventDefault();
+  lastTouch=now;
+},{passive:false});
+</script>
+
+<nav class="mobileNav" id="mobileNav">
+  <button class="active" onclick="mobileStage('learn',this)"><span>📖</span>学习</button>
+  <button onclick="mobileStage('keyword',this)"><span>🔑</span>关键词</button>
+  <button onclick="mobileStage('translate',this)"><span>🎯</span>抽查</button>
+  <button onclick="mobileStage('mistake',this)"><span>⚠️</span>易错句</button>
+  <button onclick="mobileNext()"><span>➡️</span>下一篇</button>
+</nav>
+<div class="toast" id="toast"></div>
+</body></html>
